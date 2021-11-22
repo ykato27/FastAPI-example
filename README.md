@@ -1,6 +1,6 @@
-# python-template-repository
+# FastAPI-example
 
-本リポジトリはPython 環境のテンプレートリポジトリです。
+FastAPI のexample リポジトリです。
 
 ## リポジトリ構成
 
@@ -8,6 +8,11 @@
 .
 ├── Dockerfile
 ├── README.md
+├── app
+│   ├── example1.py
+│   ├── main.py
+│   ├── type_hints.py
+│   └── type_hints_2.py
 ├── data
 ├── docker-compose.yml
 ├── docs
@@ -33,20 +38,40 @@
 
 ## 環境構築
 
-- Dockderfileがあるホスト側のフォルダへ移動（例：Desktop/python-template-repository）
+- Docker イメージをビルド
 
 ```
-cd Desktop/python-template-repository
+docker build  -t myimage .
 ```
 
-- Dockerによる環境構築（フォルダをマウント：Desktop/python-template-repository）
+- Docker コンテナを起動
 
 ```
-docker-compose up --build
+docker run -d --name myucontainer -p 80:80 myimage
 ```
 
-- ブラウザーを立ち上げてlocalhost:8888へアクセス
-- ローカルフォルダがマウントされている
+- ブラウザーを立ち上げて下記へアクセス
+
+```
+http://127.0.0.1/items/5?q=somequery
+http://192.168.99.100/items/5?q=somequery
+```
+
+- 対話的APIドキュメント
+
+```
+http://127.0.0.1/docs
+http://192.168.99.100/docs
+```
+
+
+- その他の対話的APIドキュメント
+
+```
+http://127.0.0.1/redoc
+http://192.168.99.100/redoc
+```
+
 
 ## 動作環境
 
